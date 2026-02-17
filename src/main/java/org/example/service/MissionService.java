@@ -6,6 +6,7 @@ import org.example.repository.MissionEventRepository;
 import org.example.repository.SupplyRepository;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,14 @@ public class MissionService {
     public List<Astronaut> getActiveAstronautsBySpacecraft(String spacecraft) {
         return getAllAstronauts().stream()
                 .filter(a -> a.getSpacecraft().equalsIgnoreCase(spacecraft) && a.getStatus() == AstronautStatus.ACTIVE)
+                .collect(Collectors.toList());
+    }
+
+    // Cerinta 3: Sortarea astronautilor
+    public List<Astronaut> getSortedAstronauts() {
+        return getAllAstronauts().stream()
+                .sorted(Comparator.comparingInt(Astronaut::getExperienceLevel).reversed()
+                        .thenComparing(Astronaut::getName))
                 .collect(Collectors.toList());
     }
 }

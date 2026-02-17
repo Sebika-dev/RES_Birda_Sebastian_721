@@ -29,6 +29,9 @@ public class ConsoleView {
                 case "2":
                     req2FilterBySpacecraftAndStatus();
                     break;
+                case "3":
+                    req3SortAstronauts();
+                    break;
                 case "0":
                     System.out.println("Bye!");
                     return;
@@ -57,6 +60,11 @@ public class ConsoleView {
         String spacecraft = scanner.nextLine();
 
         for (Astronaut a : service.getActiveAstronautsBySpacecraft(spacecraft)) {
+            System.out.println(a.toString());
+        }
+    }
+    private void req3SortAstronauts() {
+        for (Astronaut a : service.getSortedAstronauts()) {
             System.out.println(a.toString());
         }
     }
